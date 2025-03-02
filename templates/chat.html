@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="users-list" id="users-list">
+            <div class="users-list-header">
+                <div class="current-user" data-user-id="{{ current_user.id }}">
+                    <span id="current-username">{{ current_user.username }}</span>
+                    <div class="user-controls">
+                        <button id="settings-btn" class="control-btn" title="Einstellungen">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <a href="{{ url_for('logout') }}" class="control-btn" title="Abmelden">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                        <button id="close-menu" class="control-btn mobile-only" title="Schließen">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="users">
+                {% for user in users %}
+                    {% if user.id != current_user.id %}
+                    <div class="user" data-user-id="{{ user.id }}" data-last-seen="{{ user.last_seen }}">
+                        <div class="user-info">
+                            <span class="username">{{ user.username }}</span>
+                            <span class="last-seen" id="last-seen-{{ user.id }}">
+                                {% if user.last_seen %}
+                                    Son görülme: {{ user.last_seen.strftime('%d.%m.%Y %H:%M') }}
+                                {% else %}
+                                    Hiç çevrimiçi olmadı
+                                {% endif %}
+                            </span>
+                        </div>
+                        <span class="unread-count" id="unread-{{ user.id }}"></span>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="chat-area">
+            <div class="chat-header">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="selected-user-info">
+                    <span id="selected-user">Bir kullanıcı seçin</span>
+                    <span id="selected-user-status" class="user-status"></span>
+                </div>
+            </div>
+            <div class="messages" id="messages"></div>
+            <div class="input-area">
+                <input type="text" id="message-input" placeholder="Mesajınızı yazın..." disabled>
+                <button id="attach-btn" class="action-btn" disabled><i class="fas fa-paperclip"></i></button>
+                <button id="voice-btn" class="action-btn" disabled><i class="fas fa-microphone"></i></button>
+                <button id="send-btn" class="action-btn" disabled><i class="fas fa-paper-plane"></i></button>
+                <input type="file" id="file-input" accept="image/*,audio/*" style="display: none;">
+                <div id="recording-indicator" style="display: none;">0:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ayarlar menüsü -->
+    <div id="settings-menu" class="settings-menu">
+        <div class="settings-header">
+            <h3>Ayarlar</h3>
+            <button id="close-settings" class="close-settings">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-item">
+                <label for="username-input">Kullanıcı Adı</label>
+                <div class="setting-input">
+                    <input type="text" id="username-input" value="{{ current_user.username }}">
+                    <button id="save-username" class="save-btn">Kaydet</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Tema</label>
+                <div class="theme-switch">
+                    <span>Açık</span>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Koyu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html> 

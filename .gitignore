@@ -1,0 +1,133 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Flask
+instance/
+.webassets-cache
+.env
+.flaskenv
+
+# Virtuelle Umgebungen
+venv/
+ENV/
+env/
+.venv/
+.env/
+
+# Datenbanken
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads und generierte Dateien
+static/uploads/
+uploads/
+media/
+
+# IDE-spezifische Dateien
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.project
+.pydevproject
+.settings/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporäre Dateien
+.tmp/
+.temp/
+tmp/
+temp/
+
+# Konfigurationsdateien mit sensiblen Daten
+config.py
+*.pem
+*.key
+
+# Ausnahmen für Beispielkonfigurationen
+!config/config.example.py
+
+# Abhängigkeiten
+node_modules/
+bower_components/
+
+# Kompilierte Dateien
+*.min.js
+*.min.css
+
+# Testabdeckung
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Dokumentation
+docs/_build/
+site/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Spyder Projekteinstellungen
+.spyderproject
+.spyproject
+
+# Rope Projekteinstellungen
+.ropeproject
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre Typüberprüfung
+.pyre/
+
+# pytype statische Typanalyse
+.pytype/
+
+# Cython Debug-Symbole
+cython_debug/
+
+# Betriebssystemspezifische Dateien
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes 
